@@ -12,9 +12,18 @@ pipeline {
         sh 'echo "hello"'
       }
     }
-    stage('Build') {
-      steps {
-        sh 'mvn -Dmaven.test.failure.ignore clean package'
+    stage('bla') {
+      parallel {
+        stage('Build') {
+          steps {
+            sh 'mvn -Dmaven.test.failure.ignore clean package'
+          }
+        }
+        stage('') {
+          steps {
+            sh 'echo bla'
+          }
+        }
       }
     }
     stage('Result') {
